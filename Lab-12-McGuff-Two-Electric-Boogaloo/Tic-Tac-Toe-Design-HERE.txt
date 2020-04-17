@@ -1,0 +1,117 @@
+public Main class{
+    void Main(){
+        Create a new GameBoard object. that's it.
+    }
+}
+public Panel Class{
+    private String textToDisplay; //Holds X or O
+    private boolean beenSelected; //Has this panel been selected already?
+
+    public Panel(){
+        Default Constructor.
+        Sets textToDisplay to a dash (-) incase youd prefer that over a number
+        sets beenSelected to false
+    }
+
+    public Panel(String text){
+        Similar to default constructor, but allows for alternate text over the dashes, like numbers.
+    }
+
+    //Also includes Getter and Setter Methods for both the
+    //textToDisplay String and the beenSelected boolean
+    public void setTextToDisplay(String text) {
+            this.textToDisplay = text;
+        }
+
+        public void setBeenSelected(Boolean used) {
+            this.beenSelected = used;
+        }
+
+        public String getTextToDisplay() {
+            return this.textToDisplay;
+        }
+
+        public boolean getBeenSelected() {
+            return this.beenSelected;
+        }
+}
+public class GameBoard {
+    private int BoardSize; //its the boards size
+    private Panel[][] panels; //the 2d array of panels that serve as the board
+    private Boolean twoPlayers; //true if there are two players
+    private Boolean playerTurn; //true if it's player ones turn
+    private int playerOneWins; //Counts number of times player one won.
+    private int playerTwoWins; //Counts number of times player two won.
+
+    public GameBoard() {
+        Sets the Board size to 3
+        Initializes panels at a length and width off the Board size
+        Calls Method to check if there are two players, if there aren't, then twoPlayers is set to false
+        Sets playerTurn to true, so player one goes first
+        sets player one and twos scores to zero
+        Calls BoardSetup Method
+        Calls Play Method
+    }
+
+    private Boolean oneOrTwoPlayers(Scanner in) {
+        Asks the user if there are one or two places. one returns true, two returns false
+    }
+
+    private void Play(){
+        This is where the actual game portion takes place.
+        Displays the current score
+        switches between the two players turns
+        calls SetSelected Method, which acts as a players turn
+        call method to check if there's a stalemate
+        call method to check there are three tiles in a row/column/diagonal
+        if there are three tiles in a row, increase players score
+        at the end, Reset the board
+    }
+
+    private boolean CheckTie(){
+        runs through all of the panels and returns true if each panel
+        in the panels array has the beenSelected boolean set to true
+        else it returns false
+    }
+
+    private void BoardSetup(){
+        sets each spot in the panels array to a new Panel object, all of which are numbered 1-9
+    }
+
+    private void SetSelected(){
+        Basically player input.
+        Gets an int from the player or a random int from 1-9 if the game isn't two player
+        if the panel at that position has its beenSelected boolean already set to true, do nothing
+        Sets the panel that contains that int to X or O depending on whose turn it is.
+        sets beenSelected to true.
+    }
+
+    public void BoardReset(){
+        resets the panels to their original states without creating new panel object. maybe useless?
+    }
+
+    public String toString(){
+        Prints the whole board.
+    }
+
+    //Also includes getter and setter methods for each of the players scores!
+
+    public int getPlayerOneWins() {
+            get player one wins
+    }
+
+    public int getPlayerTwoWins() {
+            get player two wins
+    }
+
+    //The "setter" methods
+    public void increasePlayerOneWins() {
+        print "Player one won!"
+        add a point to player one scores
+    }
+
+    public void increasePlayerTwoWins() {
+        print "Player two won!"
+        add a point to player twos scores
+    }
+}
